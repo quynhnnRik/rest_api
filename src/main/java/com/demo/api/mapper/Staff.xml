@@ -1,0 +1,32 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.demo.mapper.StaffMapper">
+    <insert id="insertStaff" parameterType="Staff" >
+        INSERT INTO Staff (idStaff, name, address, phoneNum, dateofBirth) VALUES (#{id}, #{name}, #{address}, #{phoneNum}, #{dateofBirth});
+    </insert>
+ 
+    <update id="updateStaff" parameterType="Staff">
+        UPDATE Staff SET idStaff = #{id}, name = #{name}, address = #{address}, phoneNum = #{phoneNum}, dateofBirth = #{dateofBirth} WHERE idStaff = #{id};
+    </update>
+     
+    <delete id="deleteStaffById" parameterType="int">
+        DELETE from Staff WHERE idStaff = #{id};
+    </delete>
+     
+    <select id="selectAllStaff" resultMap="result">
+        SELECT * FROM Staff;
+    </select>
+     
+    <select id="selectStaffById" parameterType="int" resultType="Staff">
+        SELECT * FROM Staff WHERE idStaff = #{id};
+    </select>
+     
+    <resultMap id = "result" type = "Staff">
+       <result property = "id" column = "idStaff"/>
+       <result property = "name" column = "name"/>
+       <result property = "address" column = "address"/>
+       <result property = "phoneNum" column = "phoneNum"/>
+       <result property = "dateofBirth" column = "dateofBirth"/>
+    </resultMap>
+</mapper>
